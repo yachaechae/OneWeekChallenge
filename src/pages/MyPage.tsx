@@ -27,10 +27,11 @@ export default function MyPage() {
 			await fetchUser();
 		};
 		loadUserInfo();
-	}, [fetchUser, navigate]);
+	}, [fetchUser]);
 
 	useEffect(() => {
 		if (userInfo) {
+			setUserId(userInfo.userId);
 			setUserName(userInfo.userName);
 			setPhoneNumber(userInfo.phoneNumber);
 		}
@@ -42,7 +43,7 @@ export default function MyPage() {
 			try {
 				await updateUser({ userName, phoneNumber });
 				alert("정보가 수정되었습니다!");
-				navigate("/");
+				// navigate("/");
 			} catch (error) {}
 		}
 	};
@@ -50,12 +51,9 @@ export default function MyPage() {
 		e.preventDefault();
 		try {
 			await changePassword({ uid, currentPassword, newPassword });
-			alert("Password changed successfully!");
+			alert("비밀번호가 바뀌었습니다!");
 			setIsModalOpen(false);
-		} catch (error) {
-			console.error("Error changing password:", error);
-			alert("Failed to change password.");
-		}
+		} catch (error) {}
 	};
 	return (
 		<div className=" flex px-2 flex-col justify-center w-screen h-screen items-center">
@@ -71,7 +69,7 @@ export default function MyPage() {
 						placeholder="아이디를 입력해주세요!"
 						required
 						value={userId}
-						onChange={(e) => setUserId(e.target.value)}
+						readOnly
 					/>
 
 					<InputBox
@@ -99,6 +97,7 @@ export default function MyPage() {
 
 					<div className="flex gap-3">
 						<button
+							type="button"
 							onClick={() => setIsModalOpen(true)}
 							className="flex w-full justify-center rounded-md bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
 						>

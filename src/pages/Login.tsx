@@ -8,13 +8,13 @@ export default function Login() {
 	const [userId, setUserId] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const setToken = authStore((state) => state.setToken);
+	const navigate = useNavigate();
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		try {
 			const data = await login({ userId, password });
 			const token = data.data.accessToken;
-			const navigate = useNavigate();
 			if (token) {
 				setToken(token);
 				navigate(`/`);

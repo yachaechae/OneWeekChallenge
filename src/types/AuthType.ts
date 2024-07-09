@@ -15,7 +15,7 @@ export interface LoginRejected {
 export interface AuthStore {
 	token: string | null;
 	setToken: (token: string) => void;
-	clearToken: () => void;
+	removeToken: () => void;
 }
 
 export interface RegisterType {

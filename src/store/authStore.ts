@@ -9,7 +9,7 @@ export const authStore = create<AuthStore>((set) => ({
 		setLocalStorage(token);
 		set({ token });
 	},
-	clearToken: () => {
+	removeToken: () => {
 		removeLocalStorage();
 		set({ token: null });
 	},
