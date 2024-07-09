@@ -15,7 +15,7 @@ export default function Todos() {
 	};
 
 	return (
-		<div className="px-2 justify-center w-screen">
+		<div className="px-2 flex justify-center w-screen h-screen items-center">
 			<TodoList onTodoClick={openModal} />
 			<Modal isOpen={selectedTodoId !== null} onClose={closeModal}>
 				{selectedTodoId !== null && <TodoDetail id={selectedTodoId} />}
