@@ -29,7 +29,7 @@ export default function Register() {
 				<form className="space-y-6 " onSubmit={handleSubmit}>
 					<InputBox
 						type="text"
-						title="userId"
+						title="ID"
 						id="registerId"
 						name="registerId"
 						autoComplete="text"
