@@ -29,3 +29,25 @@ export interface RegisterResult {}
 export interface RegisterRejected {
 	message: string;
 }
+
+export interface UserInfo {
+	userId: string;
+	userName: string;
+	phoneNumber: string;
+}
+
+export interface UserUpdateType {
+	userName: string;
+	phoneNumber: string;
+}
+
+export interface UserStore {
+	userInfo: UserInfo | null;
+	fetchUser: () => Promise<void>;
+	updateUser: (userUpdate: UserUpdateType) => Promise<void>;
+}
+export interface ChangePasswordType {
+	uid: string;
+	currentPassword: string;
+	newPassword: string;
+}

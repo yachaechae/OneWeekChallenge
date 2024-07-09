@@ -1,6 +1,14 @@
-import { Navigate, useNavigate } from "react-router-dom";
 import { gomuksuInstance } from "../lib/axiosInstance";
-import { LoginResult, LoginType, RegisterResult, RegisterType, SuccessResponse } from "../types/AuthType";
+import {
+	ChangePasswordType,
+	LoginResult,
+	LoginType,
+	RegisterResult,
+	RegisterType,
+	SuccessResponse,
+	UserInfo,
+	UserUpdateType,
+} from "../types/AuthType";
 
 gomuksuInstance.interceptors.response.use(
 	(res) => {
@@ -27,5 +35,22 @@ export async function register({ userId, password, userName, phoneNumber }: Regi
 		phoneNumber,
 	});
 
+	return res.data;
+}
+
+export async function fetchUserInfo(): Promise<UserInfo> {
+	const res = await gomuksuInstance.get<SuccessResponse<UserInfo>>(`/user`);
+	return res.data.data;
+}
+
+export async function updateUserInfo(userUpdate: UserUpdateType): Promise<void> {
+	await gomuksuInstance.put(`/user`, userUpdate);
+}
+
+export async function changePassword({ uid, currentPassword, newPassword }: ChangePasswordType) {
+	const res = await gomuksuInstance.put<SuccessResponse<void>>(`/user/${uid}/password`, {
+		currentPassword,
+		newPassword,
+	});
 	return res.data;
 }
