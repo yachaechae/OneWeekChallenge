@@ -1,5 +1,5 @@
 import { instance } from "../lib/axiosInstance";
-import { TodoList, Todos } from "../types/TodoTypes";
+import { Todo, TodoList, Todos } from "../types/TodoTypes";
 
 export const getTodos = async (): Promise<TodoList> => {
 	const res = await instance.get<Todos[]>(`/todos`);
@@ -8,7 +8,7 @@ export const getTodos = async (): Promise<TodoList> => {
 		total: res.data.length,
 	};
 };
-export const getTodo = async (id: number) => {
+export const getTodo = async (id: number): Promise<Todo> => {
 	const res = await instance.get(`/todos/${id}`);
 	return res.data;
 };
