@@ -3,7 +3,7 @@ import { getTodo, getTodos } from "../api/todos";
 import { todoQueryKey, todosQueryKey } from "../queryKeys/todos";
 import { Todo, TodoList } from "../types/TodoTypes";
 
-export const useTodos = (page: number, limit: number) => {
+export function useTodos(page: number, limit: number) {
 	return useQuery<TodoList>({
 		queryKey: [todosQueryKey, page, limit],
 		queryFn: async () => {
@@ -16,10 +16,11 @@ export const useTodos = (page: number, limit: number) => {
 			};
 		},
 	});
-};
-export const useTodo = (id: number): UseQueryResult<Todo, Error> => {
+}
+
+export function useTodo(id: number): UseQueryResult<Todo, Error> {
 	return useQuery({
 		queryKey: [todoQueryKey],
 		queryFn: () => getTodo(id),
 	});
-};
+}
