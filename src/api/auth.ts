@@ -22,13 +22,13 @@ gomuksuInstance.interceptors.response.use(
 );
 
 export async function login({ userId, password }: LoginType) {
-	const res = await gomuksuInstance.post<SuccessResponse<LoginResult>>(`/login`, { userId, password });
+	const res = await gomuksuInstance.post<SuccessResponse<LoginResult>>(`/auth/login`, { userId, password });
 
 	return res.data;
 }
 
 export async function register({ userId, password, userName, phoneNumber }: RegisterType) {
-	const res = await gomuksuInstance.post<SuccessResponse<RegisterResult>>(`/register`, {
+	const res = await gomuksuInstance.post<SuccessResponse<RegisterResult>>(`/auth/register`, {
 		userId,
 		password,
 		userName,

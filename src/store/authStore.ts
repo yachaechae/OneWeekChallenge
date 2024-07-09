@@ -1,16 +1,16 @@
 import { create } from "zustand";
 import { AuthStore, UserStore, UserUpdateType } from "../types/AuthType";
-import { getToken, removeToken, setToken } from "../util/localStorage";
 import { fetchUserInfo, updateUserInfo } from "../api/auth";
+import { getLocalStorage, removeLocalStorage, setLocalStorage } from "../util/localStorage";
 
 export const authStore = create<AuthStore>((set) => ({
-	token: getToken(),
+	token: getLocalStorage(),
 	setToken: (token) => {
-		setToken(token);
+		setLocalStorage(token);
 		set({ token });
 	},
 	clearToken: () => {
-		removeToken();
+		removeLocalStorage();
 		set({ token: null });
 	},
 }));

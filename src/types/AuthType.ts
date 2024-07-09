@@ -51,3 +51,8 @@ export interface ChangePasswordType {
 	currentPassword: string;
 	newPassword: string;
 }
+
+export interface PrivateRouteType {
+	path: string;
+	[key: string]: any;
+}

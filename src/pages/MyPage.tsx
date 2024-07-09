@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { InputBox } from "../components/InputBox";
-import { getToken } from "../util/localStorage";
+import { getLocalStorage } from "../util/localStorage";
 import { useUserStore } from "../store/authStore";
 import { changePassword } from "../api/auth";
 import { Modal } from "../components/Modal";
@@ -18,7 +18,7 @@ export default function MyPage() {
 
 	const uid = "userid";
 	useEffect(() => {
-		const token = getToken();
+		const token = getLocalStorage();
 		if (!token) {
 			navigate("/login");
 			return;
@@ -36,9 +36,6 @@ export default function MyPage() {
 		}
 	}, [userInfo]);
 
-	const closeModal = () => {
-		setIsModalOpen(false);
-	};
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (userInfo) {
